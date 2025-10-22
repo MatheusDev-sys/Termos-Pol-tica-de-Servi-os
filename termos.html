@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policia Civil - Ações | Termos de Serviço</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        #particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #0c0a09; }
+        /* Adiciona estilos do 'prose' para formatar o texto, como na versão anterior */
+        .prose-custom { color: #d1d5db; }
+        .prose-custom h2 { font-size: 1.5rem; line-height: 2rem; font-weight: 600; color: #f9fafb; margin-bottom: 1rem; }
+        .prose-custom h3 { font-size: 1.25rem; line-height: 1.75rem; font-weight: 500; color: #f9fafb; margin-top: 2rem; margin-bottom: 0.5rem; }
+        .prose-custom p { margin-bottom: 0.75rem; }
+        .prose-custom ul { list-style-type: disc; list-style-position: inside; margin-left: 1rem; margin-bottom: 0.75rem; }
+        .prose-custom li { margin-bottom: 0.25rem; }
+        .prose-custom a { color: #60a5fa; }
+        .prose-custom a:hover { color: #93c5fd; }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
+        
+        <div class="w-full max-w-4xl bg-gray-900/70 backdrop-blur-lg border border-gray-700/50 rounded-2xl shadow-2xl overflow-hidden">
+            <main class="p-6 sm:p-10">
+                <a href="index.html" class="inline-block mb-6 text-blue-400 hover:text-blue-300 transition-colors">&larr; Voltar para a página principal</a>
+                
+                <section id="termos" class="prose-custom max-w-none">
+                    <h2>Termos de Serviço</h2>
+                    <p>Última atualização: 22 de Outubro de 2025</p>
+                    
+                    <p>Bem-vindo ao bot "Policia Civil - Ações" ("nós", "nosso" ou "o Bot"). Estes Termos de Serviço regem o seu uso do nosso bot no Discord.</p>
+                    
+                    <h3>1. Aceitação dos Termos</h3>
+                    <p>Ao adicionar ou usar o Bot em seu servidor do Discord, você concorda em cumprir estes Termos de Serviço. Se você não concordar com os termos, não use o Bot.</p>
+
+                    <h3>2. Uso do Bot</h3>
+                    <p>O Bot foi projetado para auxiliar no gerenciamento e marcação de ações dentro de servidores do Discord. Você concorda em usar o Bot apenas para os fins a que se destina e em conformidade com todas as leis e regulamentos aplicáveis, bem como com os Termos de Serviço do Discord.</p>
+                    <p>Você concorda em não:</p>
+                    <ul>
+                        <li>Abusar das funcionalidades do Bot, como spam de comandos.</li>
+                        <li>Tentar explorar, modificar ou reverter a engenharia do Bot.</li>
+                        <li>Usar o Bot para qualquer atividade ilegal, assédio ou para violar os direitos de terceiros.</li>
+                    </ul>
+
+                    <h3>3. Modificações e Interrupção</h3>
+                    <p>Reservamo-nos o direito de modificar, suspender ou interromper o Bot (ou qualquer parte dele) a qualquer momento, com ou sem aviso prévio. Não seremos responsáveis por qualquer modificação, suspensão ou interrupção do serviço.</p>
+
+                    <h3>4. Isenção de Garantia</h3>
+                    <p>O Bot é fornecido "COMO ESTÁ" e "CONFORME DISPONÍVEL", sem garantias de qualquer tipo, expressas ou implícitas. Não garantimos que o Bot estará livre de erros, seguro ou disponível ininterruptamente.</p>
+
+                    <h3>5. Limitação de Responsabilidade</h3>
+                    <p>O Bot é um projeto sem fins lucrativos, desenvolvido voluntariamente para auxiliar a comunidade. Por esta natureza, não nos responsabilizamos por quaisquer perdas, danos (diretos ou indiretos), perda de dados ou problemas decorrentes do uso do Bot. Você o utiliza por sua conta e risco.</p>
+
+                    <h3>6. Contato</h3>
+                    <p>Se você tiver alguma dúvida sobre estes Termos, entre em contato conosco através do Discord (Usuário: xablau_sincero) ou pelo e-mail: <a href="mailto:contato.bot.pcacoes@gmail.com">contato.bot.pcacoes@gmail.com</a>.</p>
+                </section>
+            </main>
+        </div>
+        
+        <footer class="w-full max-w-4xl text-center p-4 mt-4">
+            <p class="text-sm text-gray-400">Desenvolvido por <span class="font-medium text-gray-300">Matheus_Dev</span></p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- LÓGICA DA ANIMAÇÃO DE PARTÍCULAS (REDE NEURAL) ---
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particlesArray;
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) { this.x = x; this.y = y; this.directionX = directionX; this.directionY = directionY; this.size = size; this.color = color; }
+            draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false); ctx.fillStyle = this.color; ctx.fill(); }
+            update() { if (this.x > canvas.width || this.x < 0) { this.directionX = -this.directionX; } if (this.y > canvas.height || this.y < 0) { this.directionY = -this.directionY; } this.x += this.directionX; this.y += this.directionY; this.draw(); }
+        }
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                let color = 'rgba(156, 163, 175, 0.5)';
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = 'rgba(156, 163, 175,' + opacityValue + ')';
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        function animate() { requestAnimationFrame(animate); ctx.clearRect(0, 0, innerWidth, innerHeight); for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); } connect(); }
+        window.addEventListener('resize', () => { canvas.width = innerWidth; canvas.height = innerHeight; init(); });
+        init();
+        animate();
+    </script>
+</body>
+</html>
