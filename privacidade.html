@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Policia Civil - Ações | Política de Privacidade</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        #particle-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background-color: #0c0a09; }
+        /* Adiciona estilos do 'prose' para formatar o texto, como na versão anterior */
+        .prose-custom { color: #d1d5db; }
+        .prose-custom h2 { font-size: 1.5rem; line-height: 2rem; font-weight: 600; color: #f9fafb; margin-bottom: 1rem; }
+        .prose-custom h3 { font-size: 1.25rem; line-height: 1.75rem; font-weight: 500; color: #f9fafb; margin-top: 2rem; margin-bottom: 0.5rem; }
+        .prose-custom p { margin-bottom: 0.75rem; }
+        .prose-custom ul { list-style-type: disc; list-style-position: inside; margin-left: 1rem; margin-bottom: 0.75rem; }
+        .prose-custom li { margin-bottom: 0.25rem; }
+        .prose-custom a { color: #60a5fa; }
+        .prose-custom a:hover { color: #93c5fd; }
+    </style>
+</head>
+<body class="text-gray-200">
+
+    <canvas id="particle-canvas"></canvas>
+
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center p-4 sm:p-8">
+        
+        <div class="w-full max-w-4xl bg-gray-900/70 backdrop-blur-lg border border-gray-700/50 rounded-2xl shadow-2xl overflow-hidden">
+            <main class="p-6 sm:p-10">
+                <a href="index.html" class="inline-block mb-6 text-blue-400 hover:text-blue-300 transition-colors">&larr; Voltar para a página principal</a>
+                
+                <section id="privacidade" class="prose-custom max-w-none">
+                    <h2>Política de Privacidade</h2>
+                    <p>Última atualização: 22 de Outubro de 2025</p>
+
+                    <p>Esta Política de Privacidade descreve como "Policia Civil - Ações" ("nós", "nosso" ou "o Bot") coleta, usa e armazena informações quando você usa nosso Bot no Discord.</p>
+
+                    <h3>1. Coleta de Dados</h3>
+                    <p>Para operar e fornecer suas funcionalidades, o Bot pode coletar e armazenar as seguintes informações:</p>
+                    <ul>
+                        <li><strong>IDs do Discord:</strong> Coletamos seu ID de usuário do Discord e o ID do servidor (guild) onde o Bot é usado.</li>
+                        <li><strong>Conteúdo de Comandos:</strong> Podemos armazenar o conteúdo dos comandos que você executa, especificamente aqueles relacionados à "marcação de ações", para garantir o funcionamento correto do Bot e manter um registro das operações.</li>
+                        <li><strong>Logs de Uso:</strong> Podemos registrar informações sobre como o Bot é usado (comandos executados, erros) para fins de depuração, melhoria e segurança.</li>
+                    </ul>
+                    <p>Não coletamos intencionalmente nenhuma informação de identificação pessoal (PII) além dos IDs fornecidos pelo Discord, nem coletamos o conteúdo de mensagens que não sejam comandos diretos para o Bot.</p>
+
+                    <h3>2. Uso dos Dados</h3>
+                    <p>Usamos os dados coletados para:</p>
+                    <ul>
+                        <li>Fornecer, manter e melhorar a funcionalidade do Bot.</li>
+                        <li>Processar as "ações" e comandos solicitados por você.</li>
+                        <li>Monitorar o uso, identificar problemas e prevenir abusos.</li>
+                        <li>Responder a solicitações de suporte.</li>
+                    </ul>
+
+                    <h3>3. Compartilhamento e Armazenamento de Dados</h3>
+                    <p>Nós não vendemos, alugamos ou compartilhamos seus dados pessoais com terceiros para fins de marketing.</p>
+                    <p>Os dados coletados são armazenados em servidores seguros. Reteremos os dados apenas pelo tempo necessário para cumprir os propósitos descritos nesta política ou conforme exigido por lei.</p>
+
+                    <h3>4. Seus Direitos</h3>
+                    <p>Você tem o direito de solicitar a exclusão dos dados associados ao seu ID de usuário ou servidor. Para fazer isso, entre em contato conosco.</p>
+
+                    <h3>5. Contato</h3>
+                    <p>Se você tiver alguma dúvida sobre esta Política de Privacidade, entre em contato conosco através do Discord (Usuário: xablau_sincero) ou pelo e-mail: <a href="mailto:contato.bot.pcacoes@gmail.com">contato.bot.pcacoes@gmail.com</a>.</p>
+                </section>
+            </main>
+        </div>
+        
+        <footer class="w-full max-w-4xl text-center p-4 mt-4">
+            <p class="text-sm text-gray-400">Desenvolvido por <span class="font-medium text-gray-300">Matheus_Dev</span></p>
+        </footer>
+
+    </div>
+
+    <script>
+        // --- LÓGICA DA ANIMAÇÃO DE PARTÍCULAS (REDE NEURAL) ---
+        // (O mesmo script de partículas do index.html e termos.html vai aqui)
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        let particlesArray;
+        class Particle {
+            constructor(x, y, directionX, directionY, size, color) { this.x = x; this.y = y; this.directionX = directionX; this.directionY = directionY; this.size = size; this.color = color; }
+            draw() { ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false); ctx.fillStyle = this.color; ctx.fill(); }
+            update() { if (this.x > canvas.width || this.x < 0) { this.directionX = -this.directionX; } if (this.y > canvas.height || this.y < 0) { this.directionY = -this.directionY; } this.x += this.directionX; this.y += this.directionY; this.draw(); }
+        }
+        function init() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.height * canvas.width) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                let size = (Math.random() * 2) + 1;
+                let x = (Math.random() * ((innerWidth - size * 2) - (size * 2)) + size * 2);
+                let y = (Math.random() * ((innerHeight - size * 2) - (size * 2)) + size * 2);
+                let directionX = (Math.random() * .4) - .2;
+                let directionY = (Math.random() * .4) - .2;
+                let color = 'rgba(156, 163, 175, 0.5)';
+                particlesArray.push(new Particle(x, y, directionX, directionY, size, color));
+            }
+        }
+        function connect() {
+            let opacityValue = 1;
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) * (particlesArray[a].x - particlesArray[b].x)) + ((particlesArray[a].y - particlesArray[b].y) * (particlesArray[a].y - particlesArray[b].y));
+                    if (distance < (canvas.width / 7) * (canvas.height / 7)) {
+                        opacityValue = 1 - (distance / 20000);
+                        ctx.strokeStyle = 'rgba(156, 163, 175,' + opacityValue + ')';
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+        function animate() { requestAnimationFrame(animate); ctx.clearRect(0, 0, innerWidth, innerHeight); for (let i = 0; i < particlesArray.length; i++) { particlesArray[i].update(); } connect(); }
+        window.addEventListener('resize', () => { canvas.width = innerWidth; canvas.height = innerHeight; init(); });
+        init();
+        animate();
+    </script>
+</body>
+</html>
